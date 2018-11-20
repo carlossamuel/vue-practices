@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" :style="playerBarStyle">
+                    {{playerLife}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" :style="monsterBarStyle">
+                    {{monsterLife}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  v-show="!isGameStarted" class="row controls">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+    </section>
+    <section v-show="isGameStarted" class="row controls">
+        <div class="small-12 columns">
+            <button id="attack"         @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal"           @click="heal">HEAL</button>
+            <button id="give-up"        @click="giveUp">GIVE UP</button>
+        </div>
+    </section>
+    <section v-if="turnLogs.length > 0" class="row log">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="turnLog in turnLogs" :class="turnLog.class">
+                    {{turnLog.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+    
+<script src="js/vue.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
